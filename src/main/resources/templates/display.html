@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <title>Display json tree</title>
-</head>
 <body>
+
+<h1>Json tree display</h1>
+
+<a href="/">Back to home</a>
+
+<form method="POST" id="displayForm">
+    <textarea id="jsonDataForDisplay" rows="40" cols="40"></textarea>
+    <input type="submit" value="Submit" id="displaySubmit"/>
+</form>
+
+<h1>Result</h1>
+<pre>
+    <span id="displayResult"></span>
+</pre>
+
+<script type="text/javascript"
+        src="webjars/jquery/2.2.4/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/main.js"></script>
 
 </body>
 </html>

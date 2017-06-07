@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Product",
-  "description": "A product from Acme's catalog",
+  "description": "A product",
   "type": "object",
   "properties": {
     "id": {

@@ -1,46 +1,83 @@
 $(document).ready(function () {
 
-    $("#btnSubmit").click(function (event) {
+    $("#validateSubmit").click(function (event) {
 
         //stop submit the form, we will post it manually.
         event.preventDefault();
 
-        fire_ajax_submit();
+        validateSubmit();
+
+    });
+
+    $("#displaySubmit").click(function (event) {
+
+        //stop submit the form, we will post it manually.
+        event.preventDefault();
+
+        displaySubmit();
 
     });
 
 });
 
-function fire_ajax_submit() {
+function validateSubmit() {
 
-    var data = $('#jsonData').val();
+    var data = $('#jsonDataForValidation').val();
 
-    $("#btnSubmit").prop("disabled", true);
+    $("#validateSubmit").prop("disabled", true);
 
     $.ajax({
         type: "POST",
         url: "/json/validate",
         data: data,
-        //http://api.jquery.com/jQuery.ajax/
-        //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
         processData: false, //prevent jQuery from automatically transforming the data into a query string
         contentType: false,
         cache: false,
         timeout: 600000,
         success: function (data) {
 
-            $("#result").text(data);
+            $("#validateResult").text(data);
             console.log("SUCCESS : ", data);
-            $("#btnSubmit").prop("disabled", false);
+            $("#validateSubmit").prop("disabled", false);
 
         },
         error: function (e) {
 
-            $("#result").text(e.responseText);
+            $("#validateResult").text(e.responseText);
             console.log("ERROR : ", e);
-            $("#btnSubmit").prop("disabled", false);
+            $("#validateSubmit").prop("disabled", false);
 
         }
     });
+}
 
+function displaySubmit() {
+
+    var data = $('#jsonDataForDisplay').val();
+
+    $("#displaySubmit").prop("disabled", true);
+
+    $.ajax({
+        type: "POST",
+        url: "/json/display",
+        data: data,
+        processData: false, //prevent jQuery from automatically transforming the data into a query string
+        contentType: false,
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+
+            $("#displayResult").html(data);
+            console.log("SUCCESS : ", data);
+            $("#displaySubmit").prop("disabled", false);
+
+        },
+        error: function (e) {
+
+            $("#displayResult").text(e.responseText);
+            console.log("ERROR : ", e);
+            $("#displaySubmit").prop("disabled", false);
+
+        }
+    });
 }
